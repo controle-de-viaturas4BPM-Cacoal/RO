@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Garageiro — 9º BPM</title>
+<title>Garageiro — 4º BPM</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -323,7 +323,7 @@ tr:hover td{background:rgba(245,166,35,.025)}
   <div class="sb-head">
     <div class="sb-brand">
       <div class="sb-brand-ico">🚗</div>
-      <div class="sb-brand-name"><strong>9º BPM</strong><span>SISTEMA GARAGEIRO</span></div>
+      <div class="sb-brand-name"><strong>4º BPM</strong><span>SISTEMA GARAGEIRO</span></div>
     </div>
     <button class="sb-close" onclick="closeSidebar()">✕</button>
   </div>
@@ -381,7 +381,7 @@ tr:hover td{background:rgba(245,166,35,.025)}
     </div>
   </nav>
 
-  <div class="sb-foot">9º Batalhão de Polícia Militar<br>Porto Velho — RO</div>
+  <div class="sb-foot">4º Batalhão de Polícia Militar<br>Cacoal-RO</div>
 </aside>
 
 <!-- ══ SHELL ══ -->
@@ -396,7 +396,7 @@ tr:hover td{background:rgba(245,166,35,.025)}
     </button>
     <div>
       <div class="hdr-title" id="hdrTitle">Viaturas</div>
-      <div class="hdr-sub">9º BPM — Sistema Garageiro</div>
+      <div class="hdr-sub">4º BPM — Sistema Garageiro</div>
     </div>
   </div>
   <div class="hdr-right">
@@ -2196,14 +2196,14 @@ async function pdCarregarQuadro() {
     _pdQuadro = vts.map(function(v){
       var st = String(v.status||'').toUpperCase();
       var status = st.includes('OFICINA') ? 'BAIXADA OFICINA' : 'EM CONDIÇÕES';
-      return {prefixo:v.prefixo, modelo:v.modelo||'', placa:v.placa||'', local:'SEDE/ 9º BPM', status:status, obs:'S/A'};
+      return {prefixo:v.prefixo, modelo:v.modelo||'', placa:v.placa||'', local:'SEDE/ 4º BPM', status:status, obs:'S/A'};
     });
     pdRenderQuadro();
     unload(); toast(_pdQuadro.length+' viaturas carregadas','ok');
   } catch(e) { unload(); toast('Erro: '+e.message,'err'); }
 }
 
-function pdAddQuadro(){ _pdQuadro.push({prefixo:'',modelo:'',placa:'',local:'SEDE/ 9º BPM',status:'EM CONDIÇÕES',obs:'S/A'}); pdRenderQuadro(); }
+function pdAddQuadro(){ _pdQuadro.push({prefixo:'',modelo:'',placa:'',local:'SEDE/ 4º BPM',status:'EM CONDIÇÕES',obs:'S/A'}); pdRenderQuadro(); }
 function pdRemQuadro(i){ _pdQuadro.splice(i,1); pdRenderQuadro(); }
 function pdSetQ(i,k,v){ if(_pdQuadro[i]) _pdQuadro[i][k]=v; }
 
@@ -2271,10 +2271,10 @@ function pdGerarPreview() {
   var linhasQ = d.quadro.map(function(v,i){
     var pf = v.prefixo+(v.modelo?' ('+v.modelo+')':'')+(v.placa?' '+v.placa:'');
     var sc = v.status.includes('OFICINA')?'st-ofic':v.status.includes('BAIXADA')?'st-baixa':'st-ok';
-    return '<tr><td>'+('0'+(i+1)).slice(-2)+'</td><td style="text-align:left">'+esc(pf)+'</td><td>'+esc(v.local||'SEDE/ 9º BPM')+'</td><td class="'+sc+'">'+esc(v.status)+'</td><td style="text-align:left;font-size:7.5pt">'+esc(v.obs||'S/A')+'</td></tr>';
+    return '<tr><td>'+('0'+(i+1)).slice(-2)+'</td><td style="text-align:left">'+esc(pf)+'</td><td>'+esc(v.local||'SEDE/ 4º BPM')+'</td><td class="'+sc+'">'+esc(v.status)+'</td><td style="text-align:left;font-size:7.5pt">'+esc(v.obs||'S/A')+'</td></tr>';
   }).join('');
   var tblQ = d.quadro.length
-    ? '<table class="sei-quad"><caption>QUADRO GERAL DE VIATURAS DO 9º BPM</caption><thead><tr><th>QTD</th><th>PREFIXO</th><th>LOCAL</th><th>STATUS</th><th>OBSERVAÇÕES</th></tr></thead><tbody>'+linhasQ+'</tbody></table>'
+    ? '<table class="sei-quad"><caption>QUADRO GERAL DE VIATURAS DO 4º BPM</caption><thead><tr><th>QTD</th><th>PREFIXO</th><th>LOCAL</th><th>STATUS</th><th>OBSERVAÇÕES</th></tr></thead><tbody>'+linhasQ+'</tbody></table>'
     : '';
   var linhaSep = function(label, val, largInterna){
     return '<div class="sei-item"><strong>'+esc(label)+'</strong>'+
@@ -2286,8 +2286,8 @@ function pdGerarPreview() {
   document.getElementById('pdPreview').innerHTML =
     '<div class="sei-doc">'+
       '<div class="sei-title"><p><strong>GOVERNO DO ESTADO DE RONDÔNIA</strong></p><p>Polícia Militar - PM</p><p class="sei-pdnum"><strong>PARTE DIÁRIA '+esc(d.numParte)+'</strong></p></div>'+
-      '<div class="sei-visto"><div><em>Visto conforme registro no sistema SEI.</em><br><br><strong>Comandante da SLP/P4 do 9º BPM</strong></div><div style="text-align:center;font-weight:700;font-size:9pt">9º BATALHÃO DE POLÍCIA MILITAR</div></div>'+
-      '<div class="sei-intro">Parte Diária do <strong>'+esc(d.garageiro)+'</strong>, Garageiro do 9º Batalhão, ao Sr. Chefe da P-4/9º BPM, referente ao serviço do dia <strong>'+esc(d.dataFmt)+', '+esc(d.turnoLabel)+'</strong>.</div>'+
+      '<div class="sei-visto"><div><em>Visto conforme registro no sistema SEI.</em><br><br><strong>Comandante da SLP/P4 do 4º BPM</strong></div><div style="text-align:center;font-weight:700;font-size:9pt">4º BATALHÃO DE POLÍCIA MILITAR</div></div>'+
+      '<div class="sei-intro">Parte Diária do <strong>'+esc(d.garageiro)+'</strong>, Garageiro do 4º Batalhão, ao Sr. Chefe da P-4/4º BPM, referente ao serviço do dia <strong>'+esc(d.dataFmt)+', '+esc(d.turnoLabel)+'</strong>.</div>'+
       linhaSep('1. RENDIÇÃO',''+d.ren,'calc(100% - 130px)')+
       linhaSep('2. CONTROLE DE DESLOCAMENTO DE VIATURA',''+d.des,'calc(100% - 295px)')+
       tblEmp+
@@ -2328,9 +2328,9 @@ function pdCopiarSEI() {
   if (d.quadro.length) {
     var qrows = d.quadro.map(function(v,i){
       var pf = escH(v.prefixo)+(v.modelo?' ('+escH(v.modelo)+')':'')+(v.placa?' '+escH(v.placa):'');
-      return '<tr><td style="'+tdStyle+'">'+(i+1)+'</td><td style="'+tdLStyle+'">'+pf+'</td><td style="'+tdStyle+'">'+escH(v.local||'SEDE/ 9º BPM')+'</td><td style="'+tdStyle+'">'+escH(v.status)+'</td><td style="'+tdLStyle+'">'+escH(v.obs||'S/A')+'</td></tr>';
+      return '<tr><td style="'+tdStyle+'">'+(i+1)+'</td><td style="'+tdLStyle+'">'+pf+'</td><td style="'+tdStyle+'">'+escH(v.local||'SEDE/ 4º BPM')+'</td><td style="'+tdStyle+'">'+escH(v.status)+'</td><td style="'+tdLStyle+'">'+escH(v.obs||'S/A')+'</td></tr>';
     }).join('');
-    tblQuadro = '<table style="'+tblStyle+'"><caption style="'+capStyle+'">QUADRO GERAL DE VIATURAS DO 9º BPM</caption><thead><tr><th style="'+thStyle+'">QTD</th><th style="'+thStyle+'">PREFIXO</th><th style="'+thStyle+'">LOCAL</th><th style="'+thStyle+'">STATUS</th><th style="'+thStyle+'">OBSERVAÇÕES</th></tr></thead><tbody>'+qrows+'</tbody></table>';
+    tblQuadro = '<table style="'+tblStyle+'"><caption style="'+capStyle+'">QUADRO GERAL DE VIATURAS DO 4º BPM</caption><thead><tr><th style="'+thStyle+'">QTD</th><th style="'+thStyle+'">PREFIXO</th><th style="'+thStyle+'">LOCAL</th><th style="'+thStyle+'">STATUS</th><th style="'+thStyle+'">OBSERVAÇÕES</th></tr></thead><tbody>'+qrows+'</tbody></table>';
   }
   var obsHtml = '';
   if (d.vtrRec==='C/A' && d.obs) {
@@ -2340,7 +2340,7 @@ function pdCopiarSEI() {
   if (d.lim==='C/A' && d.limTxt) { limHtml = '<div style="margin-top:6px;font-size:9pt">'+escH(d.limTxt)+'</div>'; }
   var html = '<div style="'+bodyStyle+'">'
     + '<p style="text-align:center;margin-bottom:4px"><strong>GOVERNO DO ESTADO DE RONDÔNIA</strong><br>Polícia Militar - PM<br><strong>PARTE DIÁRIA '+escH(d.numParte)+'</strong></p>'
-    + '<p style="font-size:9.5pt;text-align:justify;margin-bottom:10px">Parte Diária do <strong>'+escH(d.garageiro)+'</strong>, Garageiro do 9º Batalhão, ao Sr. Chefe da P-4/9º BPM, referente ao serviço do dia <strong>'+escH(d.dataFmt)+', '+escH(d.turnoLabel)+'</strong>.</p>'
+    + '<p style="font-size:9.5pt;text-align:justify;margin-bottom:10px">Parte Diária do <strong>'+escH(d.garageiro)+'</strong>, Garageiro do 4º Batalhão, ao Sr. Chefe da P-4/4º BPM, referente ao serviço do dia <strong>'+escH(d.dataFmt)+', '+escH(d.turnoLabel)+'</strong>.</p>'
     + '<p style="'+itemStyle+'"><strong>1. RENDIÇÃO</strong> <span style="'+lineStyle+'"> </span> <strong>'+escH(d.ren)+'.</strong></p>'
     + '<p style="'+itemStyle+'"><strong>2. CONTROLE DE DESLOCAMENTO DE VIATURA</strong> <span style="'+lineStyle+'"> </span> <strong>'+escH(d.des)+'.</strong></p>'
     + tblEmp
